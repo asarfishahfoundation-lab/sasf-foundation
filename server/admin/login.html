@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin Login | SASF Foundation</title>
+
+<meta
+    name="description"
+    content="Secure administrator login for SASF Foundation."
+>
+
+<link rel="stylesheet" href="/server/admin/login.css">
+
+</head>
+
+<body>
+
+<main class="login-container">
+
+    <section class="login-card">
+
+        <div class="brand">
+
+            <h1>SASF Foundation</h1>
+
+            <p>Administrator Access</p>
+
+            <div class="gold-line"></div>
+
+        </div>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggle"
+                        aria-label="Show password"
+                        title="Show password"
+                    >
+
+                        <svg
+                            id="eyeIcon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+
+                            <path
+                                d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"
+                            ></path>
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.5"
+                            ></circle>
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton"
+            >
+                Sign In
+            </button>
+
+        </form>
+
+        <a class="forgot-password-link" href="/admin/forgot-password">Forgot password?</a>
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+        <div class="security-note">
+            Your account is protected with
+            password authentication and
+            two-step verification.
+        </div>
+
+    </section>
+
+    <div class="footer">
+        SASF Foundation · Secure Administration
+    </div>
+
+</main>
+
+<script src="/admin/login.js" defer></script>
+<script src="/brand.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Verify Security Code | SASF Foundation</title>
+
+    <link rel="stylesheet" href="/server/admin/verify-otp.css">
+
+</head>
+
+
+<body>
+
+    <main class="auth-card">
+
+        <div class="brand">
+
+            <div class="brand-name">
+                SASF Foundation
+            </div>
+
+            <div class="brand-line"></div>
+
+        </div>
+
+
+        <div class="security-icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <rect
+                    x="5"
+                    y="10"
+                    width="14"
+                    height="10"
+                    rx="2"
+                ></rect>
+
+                <path
+                    d="M8 10V7a4 4 0 0 1 8 0v3"
+                ></path>
+
+                <circle
+                    cx="12"
+                    cy="15"
+                    r="1"
+                ></circle>
+
+                <path
+                    d="M12 16v2"
+                ></path>
+
+            </svg>
+
+        </div>
+
+
+        <h1>
+            Verify Security Code
+        </h1>
+
+
+        <p class="description">
+            A six-digit verification code has been generated
+            for your administrator account. Enter the code
+            to continue to the secure dashboard.
+        </p>
+
+
+        <form id="otpForm">
+
+            <input
+                id="otp"
+                class="otp-input"
+                type="text"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                placeholder="••••••"
+                aria-label="Six digit verification code"
+                required
+            >
+
+
+            <button
+                id="verifyButton"
+                class="verify-button"
+                type="submit"
+            >
+                Verify &amp; Continue
+            </button>
+
+        </form>
+
+
+        <div
+            id="status"
+            class="status"
+            aria-live="polite"
+        ></div>
+
+
+        <div class="security-note">
+
+            For your security, this verification code is
+            temporary and can only be used once.
+
+        </div>
+
+
+        <a
+            href="/admin/login"
+            class="back-link"
+        >
+            Return to Login
+        </a>
+
+    </main>
+
+
+   <script src="/admin/verify-otp.js" defer></script>
+
+<script src="/brand.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        SASF Foundation — Admin Dashboard
+    </title>
+
+    <meta
+        name="description"
+        content="SASF Foundation secure administration dashboard."
+    >
+
+    <link rel="stylesheet" href="/server/admin/admin.css">
+
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
+
+    <header class="admin-header">
+
+        <div class="brand-area">
+
+            <h1 class="brand-title">
+                SASF Foundation
+            </h1>
+
+            <p class="brand-subtitle">
+                ADMIN DASHBOARD
+            </p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <a
+                href="/"
+                class="header-button"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                >
+                    <path d="M3 11.5 12 4l9 7.5" />
+                    <path d="M5.5 10.5V20h13v-9.5" />
+                </svg>
+
+                SASF Foundation
+
+            </a>
+
+            <button
+                type="button"
+                class="header-button logout-button"
+                id="logoutButton"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                >
+                    <path d="M10 5H5v14h5" />
+                    <path d="M14 8l4 4-4 4" />
+                    <path d="M18 12H9" />
+                </svg>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- ==================================================
+         MAIN
+    ================================================== -->
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+
+            <h1 id="welcomeTitle">
+                Welcome, Admin
+            </h1>
+
+            <p>
+                Manage SASF Foundation website activity,
+                administrators and communications.
+            </p>
+
+        </section>
+
+        <div
+            id="globalMessage"
+            class="message"
+        ></div>
+
+        <!-- ==================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card" data-sensitive-dashboard>
+
+                <div class="stat-label">
+                    Contact Messages
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="contactCount"
+                >
+                    —
+                </div>
+
+            </div>
+
+            <div class="stat-card" data-sensitive-dashboard>
+
+                <div class="stat-label">
+                    Newsletter Subscribers
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="subscriberCount"
+                >
+                    —
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Administrator Accounts
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="adminCount"
+                >
+                    —
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+             USER MANAGEMENT
+        ================================================== -->
+
+        <section
+            class="dashboard-section csp-hidden"
+            id="userManagementSection"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Administrator Management
+                    </h2>
+
+                    <p class="section-description">
+                        Manage administrator accounts,
+                        roles and account access.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="openAddAdminButton"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                    >
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                    </svg>
+
+                    Add Administrator
+
+                </button>
+
+            </div>
+
+            <div
+                class="add-admin-panel"
+                id="addAdminPanel"
+            >
+
+                <form
+                    id="addAdminForm"
+                >
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="adminName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminName"
+                                name="name"
+                                required
+                                maxlength="120"
+                                autocomplete="name"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="adminEmail">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="adminEmail"
+                                name="email"
+                                required
+                                maxlength="254"
+                                autocomplete="email"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="adminPhone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="adminPhone"
+                                name="phone"
+                                required
+                                maxlength="30"
+                                autocomplete="tel"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="adminRole">
+                                Role
+                            </label>
+
+                            <select
+                                id="adminRole"
+                                name="role"
+                                required
+                            >
+
+                                <option value="staff_admin">
+                                    Staff Admin
+                                </option>
+
+                                <option value="admin">
+                                    Admin
+                                </option>
+
+                            </select>
+
+                            <p class="form-help">
+                                Super Admin accounts are controlled
+                                separately because there are only
+                                two active Super Admin positions.
+                            </p>
+
+                        </div>
+
+                        <div class="form-group full-width">
+
+                            <label for="adminPassword">
+                                Temporary Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="adminPassword"
+                                name="password"
+                                required
+                                minlength="12"
+                                maxlength="200"
+                                autocomplete="new-password"
+                            >
+
+                            <p class="form-help">
+                                Minimum 12 characters.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Create Administrator
+                        </button>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="cancelAddAdminButton"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="section-body">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
+                                <th>ROLE</th>
+                                <th>STATUS</th>
+                                <th>CREATED</th>
+                                <th>ACTIONS</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="usersTableBody"
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="table-message"
+                                >
+                                    Loading administrators...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+             PAGE PICTURES
+        ================================================== -->
+
+        <section
+            class="dashboard-section csp-hidden"
+            id="pictureManagementSection"
+        >
+
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Page Pictures</h2>
+                    <p class="section-description">
+                        Preview the pictures used across the website and upload replacements.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-body">
+                <div
+                    id="picturePermissionNotice"
+                    class="content-permission-notice csp-hidden"
+                ></div>
+                <div id="picturePageGroups" class="picture-page-groups">
+                    <p class="picture-loading">Loading website pictures…</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+             WEBSITE CONTENT MANAGEMENT
+        ================================================== -->
+
+        <section
+            class="dashboard-section csp-hidden"
+            id="contentManagementSection"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Website Content Management
+                    </h2>
+
+                    <p class="section-description">
+                        Update important SASF information
+                        stored in the website database.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="section-body">
+
+                <div
+                    id="contentPermissionNotice"
+                    class="content-permission-notice csp-hidden"
+                ></div>
+
+                <!-- FOUNDATION -->
+
+                <div
+                    class="content-category"
+                    data-content-section="homepage"
+                >
+
+                    <h3 class="content-category-title">
+                        Foundation
+                    </h3>
+
+                    <p class="content-category-description">
+                        Names displayed throughout the SASF website.
+                    </p>
+
+                    <div class="content-fields">
+
+                        <div
+                            class="content-field"
+                            data-permission-section="homepage"
+                        >
+
+                            <label for="content_foundation_name">
+                                Foundation Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_foundation_name"
+                                data-content-key="foundation_name"
+                                maxlength="200"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    foundation_name
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="foundation_name"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="homepage"
+                        >
+
+                            <label for="content_foundation_short_name">
+                                Foundation Short Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_foundation_short_name"
+                                data-content-key="foundation_short_name"
+                                maxlength="40"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    foundation_short_name
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="foundation_short_name"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="homepage"
+                        >
+
+                            <label for="content_managed_by">
+                                Managed By
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_managed_by"
+                                data-content-key="managed_by"
+                                maxlength="200"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    managed_by
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="managed_by"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="homepage"
+                        >
+
+                            <label for="content_home_intro">
+                                Homepage Introduction
+                            </label>
+
+                            <textarea
+                                id="content_home_intro"
+                                data-content-key="home_intro"
+                                maxlength="5000"
+                            ></textarea>
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    home_intro
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="home_intro"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="about"
+                        >
+
+                            <label for="content_about_description">
+                                About Foundation Description
+                            </label>
+
+                            <textarea
+                                id="content_about_description"
+                                data-content-key="about_description"
+                                maxlength="10000"
+                            ></textarea>
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    about_description
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="about_description"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ABOUT PAGE HERO INTRODUCTION -->
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="about"
+                        >
+
+                            <label for="content_about_hero_intro">
+                                About Page Hero Introduction
+                            </label>
+
+                            <textarea
+                                id="content_about_hero_intro"
+                                data-content-key="about_hero_intro"
+                                maxlength="5000"
+                            ></textarea>
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    about_hero_intro
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="about_hero_intro"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- FOUNDER -->
+
+                <div
+                    class="content-category"
+                    data-content-section="founder"
+                >
+
+                    <h3 class="content-category-title">
+                        Founder
+                    </h3>
+
+                    <p class="content-category-description">
+                        Information about the founder of
+                        SASF Foundation.
+                    </p>
+
+                    <div class="content-fields">
+
+                        <!-- FOUNDER NAME -->
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="founder"
+                        >
+
+                            <label for="content_founder_name">
+                                Founder Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_founder_name"
+                                data-content-key="founder_name"
+                                maxlength="200"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    founder_name
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="founder_name"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="founder"
+                        >
+                            <label for="content_founder_email">Founder Email</label>
+                            <input
+                                type="email"
+                                id="content_founder_email"
+                                data-content-key="founder_email"
+                                maxlength="254"
+                            >
+                            <div class="content-field-footer">
+                                <span class="content-key">founder_email</span>
+                                <button type="button" class="save-content-button" data-save-key="founder_email">Save Changes</button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="founder"
+                        >
+                            <label for="content_founder_phone">Founder Phone</label>
+                            <input
+                                type="tel"
+                                id="content_founder_phone"
+                                data-content-key="founder_phone"
+                                maxlength="40"
+                            >
+                            <div class="content-field-footer">
+                                <span class="content-key">founder_phone</span>
+                                <button type="button" class="save-content-button" data-save-key="founder_phone">Save Changes</button>
+                            </div>
+                        </div>
+
+                        <!-- FOUNDER BIOGRAPHY -->
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="founder"
+                        >
+
+                            <label for="content_founder_bio">
+                                Founder Biography
+                            </label>
+
+                            <textarea
+                                id="content_founder_bio"
+                                data-content-key="founder_bio"
+                                maxlength="15000"
+                            ></textarea>
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    founder_bio
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="founder_bio"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- FOUNDER BACKGROUND -->
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="founder"
+                        >
+
+                            <label for="content_founder_background">
+                                Founder Background
+                            </label>
+
+                            <textarea
+                                id="content_founder_background"
+                                data-content-key="founder_background"
+                                maxlength="15000"
+                            ></textarea>
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    founder_background
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="founder_background"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="founder"
+                            id="founderSocialEditor"
+                        >
+                            <label>Founder Social Links</label>
+                            <p class="content-category-description">
+                                Add or remove links shown below the founder section on the About page. Use full HTTPS links, including WhatsApp links such as https://wa.me/9779812345678.
+                            </p>
+                            <div id="founderSocialRows" class="founder-social-editor-rows"></div>
+                            <div class="founder-social-editor-actions">
+                                <button type="button" class="secondary-button" id="addFounderSocialLink">Add a link</button>
+                                <button type="button" class="primary-button" id="saveFounderSocialLinks">Save links</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CONTACT -->
+
+                <div
+                    class="content-category"
+                    data-content-section="contact"
+                >
+
+                    <h3 class="content-category-title">
+                        Contact Information
+                    </h3>
+
+                    <p class="content-category-description">
+                        Contact details used across the foundation
+                        website.
+                    </p>
+
+                    <div class="content-fields">
+
+                        <div
+                            class="content-field"
+                            data-permission-section="contact"
+                        >
+
+                            <label for="content_contact_email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="content_contact_email"
+                                data-content-key="contact_email"
+                                maxlength="254"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    contact_email
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="contact_email"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="contact"
+                        >
+
+                            <label for="content_contact_phone">
+                                Primary Phone
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_contact_phone"
+                                data-content-key="contact_phone"
+                                maxlength="50"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    contact_phone
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="contact_phone"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="contact"
+                        >
+
+                            <label for="content_whatsapp_primary">
+                                WhatsApp Number 1
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_whatsapp_primary"
+                                data-content-key="whatsapp_primary"
+                                maxlength="50"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    whatsapp_primary
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="whatsapp_primary"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field"
+                            data-permission-section="contact"
+                        >
+
+                            <label for="content_whatsapp_secondary">
+                                WhatsApp Number 2
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_whatsapp_secondary"
+                                data-content-key="whatsapp_secondary"
+                                maxlength="50"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    whatsapp_secondary
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="whatsapp_secondary"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="content-field full-width"
+                            data-permission-section="contact"
+                        >
+
+                            <label for="content_address">
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="content_address"
+                                data-content-key="address"
+                                maxlength="500"
+                            >
+
+                            <div class="content-field-footer">
+
+                                <span class="content-key">
+                                    address
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="save-content-button"
+                                    data-save-key="address"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+             CONTACT MESSAGES
+        ================================================== -->
+
+        <section class="dashboard-section" data-sensitive-dashboard>
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Recent Messages
+                    </h2>
+
+                    <p class="section-description">
+                        Messages submitted through the
+                        SASF Foundation contact form.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                class="section-body"
+                id="contactsContainer"
+            >
+
+                <div class="table-message">
+                    Loading messages...
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+             NEWSLETTER
+        ================================================== -->
+
+        <section class="dashboard-section" data-sensitive-dashboard>
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 class="section-title">
+                        Newsletter Subscribers
+                    </h2>
+
+                    <p class="section-description">
+                        People who subscribed for SASF
+                        Foundation updates.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                class="section-body"
+                id="subscribersContainer"
+            >
+
+                <div class="table-message">
+                    Loading subscribers...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ==================================================
+         PERMISSIONS MODAL
+    ================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="permissionsModal"
+    >
+
+        <div
+            class="role-modal permissions-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="permissionsModalTitle"
+        >
+
+            <div class="modal-header">
+
+                <h2
+                    class="modal-title"
+                    id="permissionsModalTitle"
+                >
+                    Grant Permissions
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closePermissionsModalButton"
+                    aria-label="Close"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        aria-hidden="true"
+                    >
+                        <path d="M6 6l12 12" />
+                        <path d="M18 6 6 18" />
+                    </svg>
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div
+                    class="modal-user"
+                    id="permissionModalUser"
+                >
+                </div>
+
+                <p
+                    class="permission-modal-copy"
+                >
+                    Choose which website sections this administrator
+                    can edit. Grant permission is a separate privilege
+                    that allows an Admin to manage Staff Admin permissions.
+                </p>
+
+                <div
+                    id="permissionsContainer"
+                    class="permissions-list"
+                >
+                    Loading permissions...
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelPermissionsButton"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="savePermissionsButton"
+                >
+                    Grant Permissions
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==================================================
+         ROLE CHANGE MODAL
+    ================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="roleModal"
+    >
+
+        <div
+            class="role-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="roleModalTitle"
+        >
+
+            <div class="modal-header">
+
+                <h2
+                    class="modal-title"
+                    id="roleModalTitle"
+                >
+                    Change Administrator Role
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeRoleModalButton"
+                    aria-label="Close"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        aria-hidden="true"
+                    >
+                        <path d="M6 6l12 12" />
+                        <path d="M18 6 6 18" />
+                    </svg>
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div
+                    class="modal-user"
+                    id="roleModalUser"
+                >
+                </div>
+
+                <label
+                    class="modal-label"
+                    for="roleSelect"
+                >
+                    Select New Role
+                </label>
+
+                <select
+                    id="roleSelect"
+                    class="role-select"
+                >
+
+                    <option value="staff_admin">
+                        Staff Admin
+                    </option>
+
+                    <option value="admin">
+                        Admin
+                    </option>
+
+                    <option value="super_admin">
+                        Super Admin
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelRoleButton"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="saveRoleButton"
+                >
+                    Save Role
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/server/admin/admin.js" defer></script>
+    <script src="/brand.js" defer></script>
+
+</body>
+
+</html>
